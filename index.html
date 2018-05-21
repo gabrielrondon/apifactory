@@ -41,7 +41,11 @@
 
       // Build a system
       const ui = SwaggerUIBundle({
-        url: "https://gabrielrondon.github.io/apifactory/collections/batesmotel.yaml",
+        url: [
+          "https://gabrielrondon.github.io/apifactory/collections/batesmotel.yaml",
+          "https://gabrielrondon.github.io/apifactory/collections/mememeister.yaml"
+        
+        ],
         dom_id: '#swagger-ui',
         deepLinking: true,
         presets: [
