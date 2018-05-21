@@ -1,0 +1,19 @@
+openapi: "3.0.0"
+
+info:
+  title: Bates Motel API
+
+servers:
+  - url: api.batesmotel.com/v1
+
+paths:
+  /hosts:
+    get:
+      parameters:
+        - name: hosts
+          in: query
+          required: false
+          
+      responses:
+        200:
+          description: ok
