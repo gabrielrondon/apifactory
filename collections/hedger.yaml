@@ -19,3 +19,53 @@ info:
 servers: 
   - url: https://api.hedgerchain.com/v1
     description: Hedger API Server
+
+#Tags
+tags:
+  - name: hedge
+    description: Hedge Funds
+
+# Paths
+paths:
+  /hedge:
+    summary: Manage the Hedge Funds
+    get:
+      tags:
+        - hedge
+      summary: List All Public Hedge Funds
+      description: List all the created Hedge Funds which have the status as Public
+      operationId: getHedge
+      parameters:
+        - name: limit
+          in: query
+          description: maximum number of the List
+          required: false
+          schema:
+            type: string
+            format: int32
+      responses:
+        200:
+          description: ok
+    post:
+      tags:
+        - hedge
+      summary: Create a Hedge Fund
+      description: Create a New Hedge Fund
+      operationId: createHedge
+      parameters:
+        - name: name
+          in: header
+          description: Hedge Fund's name
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Successful
+          schema:
+            $ref: "#components/schemas/200"
+
+components:
+  schema:
+    200:
+      description: OK
