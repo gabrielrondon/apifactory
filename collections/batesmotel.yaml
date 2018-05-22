@@ -15,19 +15,83 @@ info:
     url: https://www.mozilla.org/en-US/MPL/2.0/
   version: "0.1.0"
 
+# Tags
+name: hosts
+
 # Servers
 servers:
   - url: http://api.batesmotel.com/v1
     description: Production Server
 
+# Paths
 paths:
   /hosts:
+    summary: Manage Hosts
     get:
+      tags: hosts
+      summary: List of registered users
+      description:  | 
+        Operation GET to view all the users registered in database.
+      operationId: getHosts
       parameters:
         - name: hosts
           in: query
           required: false
-          
+          schema:
+            type: array
+            items:
+              type: string
+        - name: limit
+          in: query
+          description: maximum number of results to return
+          required: false
+          schema:
+            type: integer
+            format: int32
       responses:
         200:
           description: ok
+    post:
+      tags: hosts
+      summary: Register a new host
+      description: |
+        This operation allows to register a new host to our database
+      operationId: registerHost
+      parameters:
+        - name: host
+          in: header
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+  /hosts/{id}:
+    put:
+      tags: hosts
+      summary: Update a new host
+      description: |
+        Update a specific host
+      operationId: updateHost
+      parameters:
+        - name: id
+          in: query
+          required: true
+          type: int32
+      responses:
+        200:
+          description: OK
+    delete:
+      tags: hosts
+      summary: Delete a host
+      description: |
+        Delete a specific host
+      operationId: deleteHost
+      parameters:
+        - name: id
+          in: query
+          required: true
+          type: int32
+      responses:
+        200:
+          description: ok
+      
