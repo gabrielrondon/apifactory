@@ -5,7 +5,7 @@ openapi: "3.0.1"
 info:
   title: Bates Motel API
   description: This API represents the operation of the Bates Motel
-  termsofService: terms.batesmotel.com
+  termsOfService: terms.batesmotel.com
   contact:
     name: Norma Bates
     url: http://www.batesmotel.com
@@ -15,8 +15,9 @@ info:
     url: https://www.mozilla.org/en-US/MPL/2.0/
   version: "0.1.0"
 
-# Tags
-name: hosts
+tags:
+  - name: hosts
+    description: Host Management
 
 # Servers
 servers:
@@ -28,19 +29,13 @@ paths:
   /hosts:
     summary: Manage Hosts
     get:
-      tags: hosts
+      tags: 
+        - hosts
       summary: List of registered users
       description:  | 
         Operation GET to view all the users registered in database.
       operationId: getHosts
       parameters:
-        - name: hosts
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
         - name: limit
           in: query
           description: maximum number of results to return
@@ -50,48 +45,92 @@ paths:
             format: int32
       responses:
         200:
-          description: ok
+          description: An array of Registered Hosts
+          headers: 
+            x-next:
+              description: A link to the next page of responses
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Hosts"
     post:
-      tags: hosts
+      tags: 
+        - hosts
       summary: Register a new host
       description: |
         This operation allows to register a new host to our database
       operationId: registerHost
-      parameters:
-        - name: host
-          in: header
-          required: true
-          type: string
       responses:
-        200:
+        201:
           description: OK
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
   /hosts/{id}:
     put:
-      tags: hosts
+      tags: 
+        - hosts
       summary: Update a new host
       description: |
         Update a specific host
       operationId: updateHost
       parameters:
         - name: id
-          in: query
+          in: path
           required: true
-          type: int32
+          schema:
+            type: string
       responses:
         200:
           description: OK
     delete:
-      tags: hosts
+      tags: 
+        - hosts
       summary: Delete a host
       description: |
         Delete a specific host
       operationId: deleteHost
       parameters:
         - name: id
-          in: query
+          in: path
           required: true
-          type: int32
+          schema:
+            type: string
       responses:
         200:
           description: ok
-      
+
+components:
+  schemas:
+    Host:
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        tag:
+          type: string
+    Hosts:
+      type: array
+      items:
+        $ref: '#/components/schemas/Host'
+    Error:
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+          
