@@ -1,0 +1,21 @@
+# OpenAPI Version
+openapi: "3.0.1"
+
+# API Metadata
+info:
+  title: WiseReader API
+  description: Description of the basic WR Operations
+  termsOfService: wisereader.io/terms
+  contact:
+    name: Gabriel
+    url: wisereader.io/contact
+    email: gabriel.rondon@wisereader.io
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: "0.5.0"
+
+# Servers:
+servers:
+  url: https://api.wisereader.io/v1
+  description: WiseReader Server

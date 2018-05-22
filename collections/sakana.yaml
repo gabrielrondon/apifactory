@@ -1,0 +1,21 @@
+# OpenAPI Version
+openapi: "3.0.1"
+
+# API Metadata
+info:
+  title: Sakana API
+  description: API specs for the Idea Management Tool
+  termsOfService: terms.sakana.io
+  contact:
+    name: Gabriel
+    url: contact.sakana.io
+    email: gabriel@sakana.com
+  license:
+    name: MIT license
+    url: https://opensource.org/licenses/MIT
+  version: "0.2.0"
+
+# Servers
+servers:
+  url: https://api.sakana.io/v1
+  description: Sakana Server

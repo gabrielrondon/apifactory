@@ -1,0 +1,21 @@
+# OpenAPI Version
+openapi: "3.0.1"
+
+# Metadata about the API
+info:
+  title: Hedger Application API
+  description: "*Hedger definitions and operations*"
+  termsOfService: terms.hedgerchain.com
+  contact:
+    name: Support Team
+    url: support.hedgerchain.com
+    email: support@hedgerchain.com
+  license:
+    name: MPL 2.0
+    url: https://www.mozilla.org/en-US/MPL/2.0/
+  version: "0.1.0"
+
+# Servers
+servers: 
+  url: https://api.hedgerchain.com/v1
+  description: Hedger API Server

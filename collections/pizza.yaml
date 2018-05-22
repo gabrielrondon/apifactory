@@ -1,0 +1,20 @@
+# OpenAPI Version
+openapi: "3.0.1"
+
+# API Metadata
+info:
+  title: Pizza Service API
+  description: API to manage orders of Pizza
+  termsOfService: terms.pizza.com
+  contact:
+    name: Manager
+    url: contact.pizza.com
+    email: manager@pizza.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: "1.0.0"
+
+# Servers
+servers:
+  url: https://api.pizza.com/v1
