@@ -17,5 +17,5 @@ info:
 
 # Servers:
 servers:
-  url: https://api.wisereader.io/v1
-  description: WiseReader Server
+  - url: https://api.wisereader.io/v1
+    description: WiseReader Server

@@ -17,4 +17,5 @@ info:
 
 # Servers
 servers:
-  url: https://api.pizza.com/v1
+  - url: https://api.pizza.com/v1
+    description: Pizza Server

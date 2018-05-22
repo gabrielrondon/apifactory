@@ -17,5 +17,5 @@ info:
 
 # Servers
 servers: 
-  url: https://api.hedgerchain.com/v1
-  description: Hedger API Server
+  - url: https://api.hedgerchain.com/v1
+    description: Hedger API Server

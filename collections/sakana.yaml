@@ -17,5 +17,5 @@ info:
 
 # Servers
 servers:
-  url: https://api.sakana.io/v1
-  description: Sakana Server
+  - url: https://api.sakana.io/v1
+    description: Sakana Server
