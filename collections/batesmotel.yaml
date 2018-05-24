@@ -104,7 +104,12 @@ paths:
       responses:
         200:
           description: ok
-
+  
+// Create rooms
+// Get available rooms
+// Create a reservation (before check-in)
+// Create a lodging period (between check-in and check-out)
+// Comments and feedbacks (post check-out)
 components:
   schemas:
     Host:

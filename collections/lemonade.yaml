@@ -1,0 +1,117 @@
+# https://github.com/lemonade-hq/policy-2.0
+openapi: "3.0.1"
+
+#info
+info:
+  title: Juice Framework
+  description: An open-source framework to create Insurance Policies
+  termsOfService: http://juice.lemonade.com/terms
+  contact:
+    name: Support Team
+    url: http://juice.lemonade.com/support
+    emial: support_juice@lemonade.com
+  license:
+    name: GNU Free Documentation
+    url: https://www.gnu.org/licenses/fdl-1.3.en.html
+  version: "0.0.1"
+
+servers: http://juice.lemonade.com/v1
+
+tags:
+  - name: Policy Management
+    description: Endpoints related to Policy Management
+
+consumes:
+  - application/json
+produces:
+  - application/json
+
+paths:
+  /policy:
+    summary: Policy Management (general)
+    get:
+      summary: Get All Policies
+      description: Get All the Insurance Policies
+      parameters:
+        - name: limit
+          in: query
+          description: maximum number of results to return
+          required: false
+          schema:
+            type: integer
+            format: int32
+      response:
+        200:
+          description: OK
+          content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Policies"
+    post:
+      summary: Create Policy
+      description: Post a new Policy
+      parameters:
+        - name: policy
+
+      response:
+        200:
+          description: OK
+          content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Policy"
+  /policy/{policy-id}:
+    summary: Policy Management (specific)
+    get:
+      summary: Get One Policy
+      description: Get a Specific Policy
+      response:
+        description: OK
+        content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Policy"
+    put:
+      summary: Update Policy
+      description: Update a specific Policy
+      response:
+        description: OK
+        content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Policy"
+    delete:
+      summary: Delete Policy
+      description: Delete a Specific Policy
+      response:
+        description: OK
+        content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Policy"
+
+components:
+  schemas:
+    Policy:
+      required:
+        - id
+        - title
+        - geographic
+        - category
+      properties:
+        id:
+          type: integer
+          format: int64
+        title:
+          type: string
+        geographic:
+          type: array
+          items:
+            type: string
+        category:
+          type: array
+          items: string
+    Policies:
+      type: array
+      items:
+        $ref: '#/components/schemas/Policy'
