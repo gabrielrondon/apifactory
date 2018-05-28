@@ -18,4 +18,125 @@ info:
 # Servers:
 servers:
   - url: https://api.wisereader.io/v1
-    description: WiseReader Server
+    description: WiseReader Server (Prod)
+  - url: localhost:1337/v1
+    description: WiseReader Local Development
+
+# Paths:
+
+# Components:
+components:
+  schemas:
+      Subject:
+        type: object
+        required:
+          - id
+          - title
+        properties:
+          id:
+            typer: integer
+            format: int64
+          title:
+            type: string
+      Curriculum:
+        type: object
+        required:
+          - subjectID
+          - name
+          - order
+        properties:
+          subjectID:
+            type: string
+          name:
+            type: string
+          order:
+            type: integer
+            format: int32
+          parentID:
+            type: string
+        SmartBlock:
+          type: object
+          required:
+            - curriculumID
+            - contentType
+          properties:
+            curriculumID:
+              type: string
+            userID:
+              type: string
+            contentType:
+              type: string
+            textContent:
+              type: string
+            imgURL:
+              type: string
+            videoURL:
+              type: string
+            source:
+              type: string
+            author:
+              type: string
+            publisher:
+              type: string
+            copyrights:
+              type: boolean
+        Comment:
+          type: object
+          required:
+            - blockID
+            - userID
+            - comment
+          properties:
+            blockID:
+              type: string
+            userID:
+              type: string
+            comment:
+              type: string
+            reply:
+              type: schema
+                $ref: '#components/schemas/Reply'
+        Reply:
+          type: object
+          required:
+            - commentID
+            - userID
+            - reply
+          properties:
+            attributesID:
+              type: schema
+                $ref: '#/components/schemas/Comment'
+            userID:
+              type: schema
+                $ref: '#/components/schemas/User'
+            reply:
+              type: string
+        Favorite:
+          type: object
+          required:
+            - blockID
+            - userID
+          properties:
+            blockID:
+              type: schema
+                $ref: '#/components/schemas/SmartBlock'
+            userID:
+              type: schema
+                $ref: '#/components/schemas/User'
+        User:
+          type: object
+          required:
+            - email
+            - name
+            - password
+          properties:
+            email:
+              type: string
+            name:
+              type: string
+            role:
+              type: string
+            profileImage:
+              type: string
+            password:
+              type: string

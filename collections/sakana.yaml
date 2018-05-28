@@ -19,3 +19,120 @@ info:
 servers:
   - url: https://api.sakana.io/v1
     description: Sakana Server
+
+# Tags
+tags:
+  - ideas
+  - collections
+
+# Paths
+paths:
+  /ideas:
+    get:
+      summary: Get All Ideas
+      description: Get All registered Ideas
+      operationId: getIdeas
+      responses:
+        '200':
+          description: ideas response
+          content:
+            '*/*':
+              schema:
+                type: array
+              items:
+                $ref: '#/components/schemas/Idea'
+    post:
+      summary: Create New Idea
+      description: Create a New Idea with the required properties
+      operationId: postIdea
+      responses:
+        200:
+          description: ok
+  /ideas/{idea-id}:
+    get:
+      summary: Get a Specific Idea
+      description: Get a Specific Idea through its ID
+      operationId: getIdeasById
+      responses:
+        200:
+          description: ok
+    put:
+      summary: Modify an Idea
+      description: Update or Modify an existing Idea through its ID
+      operationId: putIdea
+      responses:
+        description: ok
+    delete:
+      summary: Delete an Idea
+      description: Delete an existing Idea by given its ID
+      operatoinId: deleteIdea
+      responses:
+        200:
+          description: ok
+    parameters:
+      - name: id
+        in: path
+        description: ID of Idea
+        required: true
+        schema:
+          type: array
+          style: simple
+          items:
+            type: string
+
+
+# Components
+components:
+  schemas:
+    ErrorModel:
+      type: object
+      required:
+        - message
+        - code
+      properties:
+        message:
+          type: string
+        code:
+          type: integer
+          minimum: 100
+          maximum: 600
+    ExtendedErrorModel:
+      allOf:
+        - $ref: '#/components/schemas/ErrorModel'
+        - type: object
+          required:
+          - rootCause
+          properties:
+            rootCause:
+              type: string
+    Idea:
+      description: A representation of an Idea
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        title:
+          type: string
+        body:
+          type: string
+    Collections:
+      description: A representation of Collections of Ideas
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        title:
+          type: string
+        ideas:
+          type: array
+            $ref: '#/components/schemas/Idea'
+  responses:
+  parameters:
+  examples:
+  requestBodies:
+  headers:
+  securitySchemes:
+  links:
+  callbacks:

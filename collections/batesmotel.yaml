@@ -29,10 +29,10 @@ paths:
   /hosts:
     summary: Manage Hosts
     get:
-      tags: 
+      tags:
         - hosts
       summary: List of registered users
-      description:  | 
+      description:  |
         Operation GET to view all the users registered in database.
       operationId: getHosts
       parameters:
@@ -46,7 +46,7 @@ paths:
       responses:
         200:
           description: An array of Registered Hosts
-          headers: 
+          headers:
             x-next:
               description: A link to the next page of responses
               schema:
@@ -56,7 +56,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/Hosts"
     post:
-      tags: 
+      tags:
         - hosts
       summary: Register a new host
       description: |
@@ -73,7 +73,7 @@ paths:
                 $ref: "#/components/schemas/Error"
   /hosts/{id}:
     put:
-      tags: 
+      tags:
         - hosts
       summary: Update a new host
       description: |
@@ -89,7 +89,7 @@ paths:
         200:
           description: OK
     delete:
-      tags: 
+      tags:
         - hosts
       summary: Delete a host
       description: |
@@ -104,12 +104,12 @@ paths:
       responses:
         200:
           description: ok
-  
-// Create rooms
-// Get available rooms
-// Create a reservation (before check-in)
-// Create a lodging period (between check-in and check-out)
-// Comments and feedbacks (post check-out)
+
+# Create rooms
+# Get available rooms
+# Create a reservation (before check-in)
+# Create a lodging period (between check-in and check-out)
+# Comments and feedbacks (post check-out)
 components:
   schemas:
     Host:
@@ -138,4 +138,3 @@ components:
           format: int32
         message:
           type: string
-          
