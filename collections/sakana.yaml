@@ -126,7 +126,7 @@ components:
         title:
           type: string
         ideas:
-          type: array
+          schemas:
             $ref: '#/components/schemas/Idea'
   responses:
   parameters:
